@@ -14,12 +14,14 @@ Each guest is a person that has relationships with all other people. Relationshi
 - Enemies
 - Neutral
 
-The goal is to seat people who are friends at the same table, while avoiding seating enemies at the same table.
+The goal is to seat people who are friends at the same table, while avoiding seating enemies at the same table. 
 
-Three possible algorithms to solve this are:
+Some possible algorithms to solve this are:
 - Backtracking
 - Simmulated Annealing
 - Genetic Algorithm (our implementation)
+- Dynamic Programming
+- Greedy Algorithm
 
 
 
