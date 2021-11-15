@@ -20,3 +20,8 @@ Three possible algorithms to solve this are:
 - Backtracking
 - Simmulated Annealing
 - Genetic Algorithm (our implementation)
+
+
+
+
+https://docs.google.com/document/d/1v4VgQfoFHmKJFbS-DqXwt6osxYAXW2SkecHNaFl8hSE/edit#
