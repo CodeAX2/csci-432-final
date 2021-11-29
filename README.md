@@ -3,7 +3,16 @@ Final project for CSCI 432
 ## Project Overview
 Option 2: Choose a problem with multiple algorithms that solve it, discuss all 3 algorithms, and implement 1.
 
-### Problem Overview:
+### Due Dates
+November 29th - Progress Report
+
+December 6th - Final Presentation
+
+December 10th - Formal Write-Up
+
+Final Period - Contribution Document
+
+## Problem Overview:
 Wedding table seating assignment.
 
 You are planning the seating arrangement for a wedding. Given N tables, each with M seats at a table, 
