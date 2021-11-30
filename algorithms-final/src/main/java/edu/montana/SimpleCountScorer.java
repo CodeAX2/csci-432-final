@@ -15,6 +15,11 @@ public class SimpleCountScorer implements SeatingScorer {
                     Person personA = table[i];
                     Person personB = table[j];
 
+                    // If either person is null, this is not a valid seating arrangement
+                    // So we retrun int min
+                    if (personA == null || personB == null)
+                        return Integer.MIN_VALUE;
+
                     // If the pair are friends, increment the score by 1
                     if (personA.isFriend(personB))
                         score++;

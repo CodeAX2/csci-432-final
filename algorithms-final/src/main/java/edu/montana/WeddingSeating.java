@@ -2,6 +2,7 @@ package edu.montana;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WeddingSeating {
 
@@ -24,8 +25,29 @@ public class WeddingSeating {
         this.scorer = scorer;
     }
 
+    // Copy constructor
+    public WeddingSeating(WeddingSeating other) {
+        this.numTables = other.numTables;
+        this.guestsPerTable = other.guestsPerTable;
+
+        this.unassignedGuests = new ArrayList<>(other.unassignedGuests);
+
+        this.tables = new Person[numTables][guestsPerTable];
+        for (int i = 0; i < numTables; i++) {
+            for (int j = 0; j < guestsPerTable; j++) {
+                this.tables[i][j] = other.tables[i][j];
+            }
+        }
+
+        this.scorer = other.scorer;
+    }
+
     public int getNumTables() {
         return numTables;
+    }
+
+    public int getNumSeatsPerTable() {
+        return guestsPerTable;
     }
 
     public void assignTable(Person guest, int tableNum) {
@@ -69,6 +91,62 @@ public class WeddingSeating {
 
     public int getCurrentScore() {
         return scorer.scoreSeating(this);
+    }
+
+    public void randomChange(int guestsToChange) {
+
+        Random rand = new Random();
+
+        for (int i = 0; i < guestsToChange; i++) {
+            // Select random non-empty table
+            int tableNum = rand.nextInt(tables.length);
+            while (getNumOpenSeats(tableNum) == guestsPerTable) {
+                tableNum = rand.nextInt(tables.length);
+            }
+            // Select random guest
+            int guestIndex = rand.nextInt(guestsPerTable);
+            while (tables[tableNum][guestIndex] == null) {
+                guestIndex = rand.nextInt(guestsPerTable);
+            }
+            Person guest = tables[tableNum][guestIndex];
+            tables[tableNum][guestIndex] = null;
+            unassignedGuests.add(guest);
+
+            // Select a new non-full table
+            tableNum = rand.nextInt(tables.length);
+            while (getNumOpenSeats(tableNum) == 0) {
+                tableNum = rand.nextInt(tables.length);
+            }
+
+            assignTable(guest, tableNum);
+
+        }
+
+    }
+
+    public void swapGuests(int guestATable, int guestASeat, int guestBTable, int guestBSeat) {
+        Person personA = tables[guestATable][guestASeat];
+        Person personB = tables[guestBTable][guestBSeat];
+
+        tables[guestATable][guestASeat] = personB;
+        tables[guestBTable][guestBSeat] = personA;
+
+    }
+
+    public int[] getTableSeatOfGuest(Person guest) {
+        if (guest == null)
+            return new int[] { -1, -1 };
+        for (int i = 0; i < numTables; i++) {
+            for (int j = 0; j < guestsPerTable; j++) {
+                if (tables[i][j] == guest)
+                    return new int[] { i, j };
+            }
+        }
+        return new int[] { -1, -1 };
+    }
+
+    public Person getPersonAtSeat(int tableNum, int seatNum) {
+        return tables[tableNum][seatNum];
     }
 
 }

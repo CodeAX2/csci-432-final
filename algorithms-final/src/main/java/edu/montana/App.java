@@ -8,12 +8,26 @@ public class App {
 
         List<Person> guests = new ArrayList<>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 8; i++) {
             Person cur = new Person();
             guests.add(cur);
         }
-        Person.createRandomRelations(5, 5, guests);
+        Person.createRandomRelations(1, 1, guests);
 
-        new WeddingSeating(10, guests, new SimpleCountScorer());
+        WeddingSeating seating = new WeddingSeating(2, guests, new SimpleCountScorer());
+
+        WeddingSeating seatingCopy = new WeddingSeating(seating);
+        SeatingSolver geneticSolver = new GeneticSolver();
+        seatingCopy = geneticSolver.solveSeating(seatingCopy);
+
+        SeatingSolver backtrackingSolver = new BacktrackingSolver();
+        seatingCopy = new WeddingSeating(seating);
+        seatingCopy = backtrackingSolver.solveSeating(seatingCopy);
+
+        System.out.println("Genetic Algorithm Runtime: " + geneticSolver.getLastSolveRuntime() + "ms");
+        System.out.println("Final Score: " + geneticSolver.getLastSolveScore());
+        System.out.println();
+        System.out.println("Backtracking Runtime: " + backtrackingSolver.getLastSolveRuntime() + "ms");
+        System.out.println("Final Score: " + backtrackingSolver.getLastSolveScore());
     }
 }
