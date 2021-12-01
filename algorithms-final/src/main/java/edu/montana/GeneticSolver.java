@@ -12,7 +12,7 @@ public class GeneticSolver extends SeatingSolver {
         long start = System.currentTimeMillis();
 
         // Must be an integer divisible by 2
-        int populationSize = 150;
+        int populationSize = 300;
 
         // Create the population
         WeddingSeating[] population = new WeddingSeating[populationSize];

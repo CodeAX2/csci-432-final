@@ -149,4 +149,25 @@ public class WeddingSeating {
         return tables[tableNum][seatNum];
     }
 
+    public String toString() {
+        String asString = "";
+
+        for (int i = 0; i < numTables; i++) {
+            asString += "Table " + (i + 1) + ":\n";
+            for (Person guest : tables[i]) {
+                asString += "\t" + guest + "\n";
+            }
+            if (i != numTables - 1) {
+                asString += "\n";
+            }
+        }
+
+        return asString;
+
+    }
+
+    public void setScorer(SeatingScorer scorer) {
+        this.scorer = scorer;
+    }
+
 }

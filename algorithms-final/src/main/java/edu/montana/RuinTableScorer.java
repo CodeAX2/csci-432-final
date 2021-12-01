@@ -1,7 +1,8 @@
 package edu.montana;
 
-public class SimpleCountScorer implements SeatingScorer {
+public class RuinTableScorer implements SeatingScorer {
 
+    @Override
     public int scoreSeating(WeddingSeating seating) {
 
         int score = 0;
@@ -9,6 +10,8 @@ public class SimpleCountScorer implements SeatingScorer {
         Person[][] tables = seating.getAllTables();
         // Loop over all the tables
         for (Person[] table : tables) {
+            boolean tableHasEnemies = false;
+            int tableFriendScore = 0;
             // Loop over each pair of guests
             for (int i = 0; i < table.length; i++) {
                 for (int j = i + 1; j < table.length; j++) {
@@ -20,20 +23,19 @@ public class SimpleCountScorer implements SeatingScorer {
                     if (personA == null || personB == null)
                         return Integer.MIN_VALUE;
 
-                    // If the pair are friends, increment the score
+                    // If the pair are friends, increment the table friend score
                     if (personA.isFriend(personB)) {
-                        score++;
+                        tableFriendScore++;
                     }
 
-                    // If the pair are enemies, decrement the score
+                    // If the pair are enemies, table has enemies
                     if (personA.isEnemy(personB)) {
-                        score--;
+                        tableHasEnemies = true;
                     }
-
-                    // Interesting thing of note, we can incremend/decrement by any number and it
-                    // does not change the final assignment, since the best assignment will still be
-                    // the best
                 }
+            }
+            if (!tableHasEnemies) {
+                score += tableFriendScore;
             }
         }
 

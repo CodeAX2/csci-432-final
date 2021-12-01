@@ -94,4 +94,26 @@ public class Person {
         }
     }
 
+    public String toString() {
+        String asString = "";
+
+        asString += name + "  ::  ";
+
+        asString += "F: ";
+        for (int i = 0; i < friends.size(); i++) {
+            asString += friends.get(i).getName();
+            if (i != friends.size() - 1)
+                asString += ", ";
+        }
+
+        asString += " E: ";
+        for (int i = 0; i < enemies.size(); i++) {
+            asString += enemies.get(i).getName();
+            if (i != enemies.size() - 1)
+                asString += ", ";
+        }
+
+        return asString;
+    }
+
 }
