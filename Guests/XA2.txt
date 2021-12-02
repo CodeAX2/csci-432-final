@@ -1,0 +1,124 @@
+30 75
+Agustin
+Jackson
+Jay
+Charlotte
+Ally
+Kaylnn
+Macy
+Bailey
+Clayton
+Nikolai
+Edward
+Eric
+Gabe
+Aubrey
+Isaac
+Jacob
+Dylan
+Josh
+Madison
+Nicole
+Stephanie
+Rory
+Brody
+David
+Bill
+BadGuy
+BadGuy2
+Jack
+Kam
+Berg
+Agustin F Stephanie
+Agustin F Isaac
+Agustin F Aubrey
+Agustin F Macy
+Jackson F Gabe
+Jackson F Kaylnn
+Jackson E Eric
+Jackson E Clayton
+Jay F Madison
+Jay F Edward
+Jay F Jacob
+Charlotte F Ally
+Ally F Stephanie
+Ally F Macy
+Ally F Nikolai
+Ally F Madison
+Macy F Aubrey
+Macy F Gabe
+Macy F Isaac
+Macy F Jacob
+Bailey F Madison
+Bailey F Stephanie
+Bailey F Ally
+Bailey F Nicole
+Clayton F Eric
+Nikolai F Jacob
+Nikolai F Edward
+Eric F David
+Gabe F Jacob
+Aubrey F Jacob
+Aubrey F Isaac
+Aubrey F Nicole
+Isaac F Jacob
+Isaac F Dylan
+Isaac F David
+Isaac F Josh
+Jacob F David
+Jacob F Dylan
+Jacob F Josh
+Jacob F Stephanie
+Dylan F David
+Nicole F Stephanie
+Rory F Brody
+Bill F Nikolai
+Bill E Stephanie
+BadGuy2 E Stephanie
+BadGuy2 E Eric
+BadGuy2 E Jackson
+BadGuy2 E Jacob
+BadGuy2 E Nicole
+BadGuy2 E David
+BadGuy2 E Dylan
+BadGuy2 E Clayton
+BadGuy2 E Bailey
+BadGuy2 E BadGuy
+BadGuy2 E Brody
+BadGuy2 E Berg
+David F Jack
+David F Clayton
+David F Berg
+David F Aubrey
+David E Nikolai
+David E Kam
+Berg E Kam
+BadGuy E Agustin
+BadGuy E Jackson
+BadGuy E Jay
+BadGuy E Charlotte
+BadGuy E Ally
+BadGuy E Kaylnn
+BadGuy E Macy
+BadGuy E Bailey
+BadGuy E Clayton
+BadGuy E Nikolai
+BadGuy E Edward
+BadGuy E Eric
+BadGuy E Gabe
+BadGuy E Aubrey
+BadGuy E Isaac
+BadGuy E Jacob
+BadGuy E Dylan
+BadGuy E Josh
+BadGuy E Madison
+BadGuy E Nicole
+BadGuy E Stephanie
+BadGuy E Rory
+BadGuy E Brody
+BadGuy E David
+BadGuy E Bill
+BadGuy E BadGuy2
+BadGuy E Jack
+BadGuy E Kam
+BadGuy E Berg

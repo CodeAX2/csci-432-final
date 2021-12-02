@@ -18,24 +18,24 @@ public class App {
         // }
         // Person.createRandomRelations(5, 3, guests);
 
-        List<Person> guests = loadGuestlist("Guests/XA.txt");
+        List<Person> guests = loadGuestlist("Guests/XA2.txt");
 
         WeddingSeating seating = new WeddingSeating(5, guests, new MinMaxScorer());
 
         WeddingSeating seatingCopy = new WeddingSeating(seating);
-        // SeatingSolver geneticSolver = new GeneticSolver();
-        // seatingCopy = geneticSolver.solveSeating(seatingCopy);
+        SeatingSolver geneticSolver = new GeneticSolver();
+        seatingCopy = geneticSolver.solveSeating(seatingCopy);
 
-        // System.out.println("Genetic Algorithm Runtime: " + geneticSolver.getLastSolveRuntime() + "ms");
-        // System.out.println("Final Score: " + geneticSolver.getLastSolveScore());
+        System.out.println("Genetic Algorithm Runtime: " + geneticSolver.getLastSolveRuntime() + "ms");
+        System.out.println("Final Score: " + geneticSolver.getLastSolveScore());
 
 
 
-        SeatingSolver greedySolver = new GreedySolver();
-        seatingCopy = greedySolver.solveSeating(seatingCopy);
-        System.out.println(seatingCopy);
-        System.out.println("Greedy Algorithm Runtime: " + greedySolver.getLastSolveRuntime() + "ms");
-        System.out.println("Final Score: " + greedySolver.getLastSolveScore());
+        // SeatingSolver greedySolver = new GreedySolver();
+        // seatingCopy = greedySolver.solveSeating(seatingCopy);
+        // System.out.println(seatingCopy);
+        // System.out.println("Greedy Algorithm Runtime: " + greedySolver.getLastSolveRuntime() + "ms");
+        // System.out.println("Final Score: " + greedySolver.getLastSolveScore());
 
     }
 
