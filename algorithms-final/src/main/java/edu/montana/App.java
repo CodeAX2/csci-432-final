@@ -20,7 +20,7 @@ public class App {
 
         List<Person> guests = loadGuestlist("Guests/XA2.txt");
 
-        WeddingSeating seating = new WeddingSeating(5, guests, new MinMaxScorer());
+        WeddingSeating seating = new WeddingSeating(5, guests, new RuinTableScorer());
 
         WeddingSeating seatingCopy = new WeddingSeating(seating);
         SeatingSolver geneticSolver = new GeneticSolver();
@@ -28,14 +28,17 @@ public class App {
 
         System.out.println("Genetic Algorithm Runtime: " + geneticSolver.getLastSolveRuntime() + "ms");
         System.out.println("Final Score: " + geneticSolver.getLastSolveScore());
+        System.out.println(seatingCopy);
 
+        System.out.println("\n\n");
 
+        seatingCopy = new WeddingSeating(seating);
+        SeatingSolver greedySolver = new GreedySolver();
+        seatingCopy = greedySolver.solveSeating(seatingCopy);
 
-        // SeatingSolver greedySolver = new GreedySolver();
-        // seatingCopy = greedySolver.solveSeating(seatingCopy);
-        // System.out.println(seatingCopy);
-        // System.out.println("Greedy Algorithm Runtime: " + greedySolver.getLastSolveRuntime() + "ms");
-        // System.out.println("Final Score: " + greedySolver.getLastSolveScore());
+        System.out.println("Greedy Algorithm Runtime: " + greedySolver.getLastSolveRuntime() + "ms");
+        System.out.println("Final Score: " + greedySolver.getLastSolveScore());
+        System.out.println(seatingCopy);
 
     }
 
