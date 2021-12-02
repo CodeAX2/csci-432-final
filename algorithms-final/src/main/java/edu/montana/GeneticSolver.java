@@ -6,10 +6,15 @@ import java.util.Random;
 
 public class GeneticSolver extends SeatingSolver {
 
+    private GreedySolver greedySolver;
+
     @Override
     public WeddingSeating solveSeating(WeddingSeating seating) {
 
         long start = System.currentTimeMillis();
+
+        // Create a greedy solver for populating seats
+        greedySolver = new GreedySolver();
 
         // Must be an integer divisible by 2
         int populationSize = 300;
@@ -20,6 +25,7 @@ public class GeneticSolver extends SeatingSolver {
 
         for (int i = 0; i < populationSize; i++) {
             WeddingSeating curSeating = new WeddingSeating(seating);
+            //curSeating = populateGreedily(curSeating);
             populateSeats(curSeating);
 
             population[i] = curSeating;
@@ -82,6 +88,7 @@ public class GeneticSolver extends SeatingSolver {
 
     // Populates all the seats randomly
     private void populateSeats(WeddingSeating seating) {
+
         Random rand = new Random();
 
         List<Person> unassignedGuests = new ArrayList<>(seating.getUnassignedGuests());
@@ -95,6 +102,19 @@ public class GeneticSolver extends SeatingSolver {
                 }
             }
         }
+    }
+
+    private WeddingSeating populateGreedily(WeddingSeating seating) {
+
+        Random rand = new Random();
+
+        // Solve greedily
+        seating = greedySolver.solveSeating(seating);
+
+        // Change some random guests
+        seating.randomChange(rand.nextInt(10));
+
+        return seating;
     }
 
     // Selects 2 seats from the population using a tournament
@@ -114,7 +134,6 @@ public class GeneticSolver extends SeatingSolver {
         }
 
         // Run the tournament, i.e. select the 2 with the best fitness
-        // Fitness is the number of conflicts, so lower is better
         int bestIndex = 0, secondBestIndex = 1;
         WeddingSeating[] winners = new WeddingSeating[2];
 

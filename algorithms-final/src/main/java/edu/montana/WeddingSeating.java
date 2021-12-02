@@ -98,27 +98,25 @@ public class WeddingSeating {
         Random rand = new Random();
 
         for (int i = 0; i < guestsToChange; i++) {
-            // Select random non-empty table
-            int tableNum = rand.nextInt(tables.length);
-            while (getNumOpenSeats(tableNum) == guestsPerTable) {
-                tableNum = rand.nextInt(tables.length);
-            }
-            // Select random guest
-            int guestIndex = rand.nextInt(guestsPerTable);
-            while (tables[tableNum][guestIndex] == null) {
-                guestIndex = rand.nextInt(guestsPerTable);
-            }
-            Person guest = tables[tableNum][guestIndex];
-            tables[tableNum][guestIndex] = null;
-            unassignedGuests.add(guest);
-
-            // Select a new non-full table
-            tableNum = rand.nextInt(tables.length);
-            while (getNumOpenSeats(tableNum) == 0) {
-                tableNum = rand.nextInt(tables.length);
+            // Select two random guests
+            Person guestA = null, guestB = null;
+            int guestATable = -1, guestASeat = -1, guestBTable = -1, guestBSeat = -1;
+            while (guestA == null || guestB == null) {
+                int tableNum = rand.nextInt(numTables);
+                int seatNum = rand.nextInt(guestsPerTable);
+                if (guestA == null) {
+                    guestA = tables[tableNum][seatNum];
+                    guestATable = tableNum;
+                    guestASeat = seatNum;
+                } else {
+                    guestB = tables[tableNum][seatNum];
+                    guestBTable = tableNum;
+                    guestBSeat = seatNum;
+                }
             }
 
-            assignTable(guest, tableNum);
+            // Swap them
+            swapGuests(guestATable, guestASeat, guestBTable, guestBSeat);
 
         }
 

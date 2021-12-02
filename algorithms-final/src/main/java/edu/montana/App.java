@@ -10,17 +10,17 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
 
-        // List<Person> guests = new ArrayList<>();
+        List<Person> guests = new ArrayList<>();
 
-        // for (int i = 0; i < 100; i++) {
-        // Person cur = new Person();
-        // guests.add(cur);
-        // }
-        // Person.createRandomRelations(5, 3, guests);
+        for (int i = 0; i < 100; i++) {
+        Person cur = new Person();
+        guests.add(cur);
+        }
+        Person.createRandomRelations(5, 3, guests);
 
-        List<Person> guests = loadGuestlist("Guests/XA2.txt");
+        //List<Person> guests = loadGuestlist("Guests/XA2.txt");
 
-        WeddingSeating seating = new WeddingSeating(5, guests, new RuinTableScorer());
+        WeddingSeating seating = new WeddingSeating(5, guests, new SimpleCountScorer());
 
         WeddingSeating seatingCopy = new WeddingSeating(seating);
         SeatingSolver geneticSolver = new GeneticSolver();
