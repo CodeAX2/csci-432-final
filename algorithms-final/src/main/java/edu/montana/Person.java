@@ -73,22 +73,27 @@ public class Person {
             int numFriendsToAdd = rand.nextInt(maxNumFriends + 1) - p.getFriends().size();
             int numEnemiesToAdd = rand.nextInt(maxNumEnemies + 1) - p.getEnemies().size();
 
-            while (numFriendsToAdd > 0) {
+            int tries = pool.size() * 2;
+            while (numFriendsToAdd > 0 && tries > 0) {
                 Person possibleFriend = pool.get(rand.nextInt(pool.size()));
                 if (!p.isFriend(possibleFriend) && !p.isEnemy(possibleFriend) && p != possibleFriend
                         && possibleFriend.getFriends().size() < maxNumFriends) {
                     p.addFriend(possibleFriend);
                     numFriendsToAdd--;
+
                 }
+                tries--;
             }
 
-            while (numEnemiesToAdd > 0) {
+            tries = pool.size() * 2;
+            while (numEnemiesToAdd > 0 && tries > 0) {
                 Person possibleEnemy = pool.get(rand.nextInt(pool.size()));
                 if (!p.isFriend(possibleEnemy) && !p.isEnemy(possibleEnemy) && p != possibleEnemy
                         && possibleEnemy.getEnemies().size() < maxNumEnemies) {
                     p.addEnemy(possibleEnemy);
                     numEnemiesToAdd--;
                 }
+                tries--;
             }
 
         }

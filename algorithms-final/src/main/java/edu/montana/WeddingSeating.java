@@ -168,4 +168,8 @@ public class WeddingSeating {
         this.scorer = scorer;
     }
 
+    public SeatingScorer getScorer() {
+        return scorer;
+    }
+
 }

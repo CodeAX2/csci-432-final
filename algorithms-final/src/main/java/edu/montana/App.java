@@ -1,7 +1,6 @@
 package edu.montana;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,35 +9,49 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
 
-        List<Person> guests = new ArrayList<>();
+        long totalRuntime = 0;
+        int totalScore = 0;
 
-        for (int i = 0; i < 100; i++) {
-        Person cur = new Person();
-        guests.add(cur);
+        SeatingScorer scorer = new SimpleCountScorer();
+        SeatingSolver solverA = new GreedySolver();
+        SeatingSolver solverB = new BacktrackingSolver();
+
+        for (int iter = 0; iter < 10; iter++) {
+
+            List<Person> guests = new ArrayList<>();
+
+            int numGuests = 8;
+            int maxNumFriends = 3;
+            int maxNumEnemies = 2;
+            int guestsPerTable = 2;
+
+            for (int i = 0; i < numGuests; i++) {
+                Person cur = new Person();
+                guests.add(cur);
+            }
+
+            Person.createRandomRelations(maxNumFriends, maxNumEnemies, guests);
+
+            // List<Person> guests = loadGuestlist("Guests/XA2.txt");
+
+            WeddingSeating seating = new WeddingSeating(guestsPerTable, guests, scorer);
+
+            solverA.solveSeating(new WeddingSeating(seating));
+            solverB.solveSeating(new WeddingSeating(seating));
+
+            totalRuntime += solverA.getLastSolveRuntime();
+            totalScore += solverB.getLastSolveScore() - solverA.getLastSolveScore();
+
+            guests.clear();
+            seating = null;
+
+            System.out.println(iter);
+
         }
-        Person.createRandomRelations(5, 3, guests);
 
-        //List<Person> guests = loadGuestlist("Guests/XA2.txt");
-
-        WeddingSeating seating = new WeddingSeating(5, guests, new SimpleCountScorer());
-
-        WeddingSeating seatingCopy = new WeddingSeating(seating);
-        SeatingSolver geneticSolver = new GeneticSolver();
-        seatingCopy = geneticSolver.solveSeating(seatingCopy);
-
-        System.out.println("Genetic Algorithm Runtime: " + geneticSolver.getLastSolveRuntime() + "ms");
-        System.out.println("Final Score: " + geneticSolver.getLastSolveScore());
-        System.out.println(seatingCopy);
-
-        System.out.println("\n\n");
-
-        seatingCopy = new WeddingSeating(seating);
-        SeatingSolver greedySolver = new GreedySolver();
-        seatingCopy = greedySolver.solveSeating(seatingCopy);
-
-        System.out.println("Greedy Algorithm Runtime: " + greedySolver.getLastSolveRuntime() + "ms");
-        System.out.println("Final Score: " + greedySolver.getLastSolveScore());
-        System.out.println(seatingCopy);
+        System.out.println("Backtracking Runtime Avg: " + totalRuntime / 10.0 + "ms");
+        System.out.println("Backtracking Score Avg: " + totalScore / 10.0 + " ("
+                + scorer.getClass().getSimpleName() + ")");
 
     }
 
